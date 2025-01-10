@@ -53,5 +53,17 @@ namespace Thot.Repositorio
 
             return clienteDB;
         }
+
+        public bool Apagar(int id)
+        {
+            ClienteModel clienteDB = ListarPorId(id);
+
+            if (clienteDB == null) throw new System.Exception("Houve um erro na Deleção do Cliente");
+
+            _bancoContext.Clientes.Remove(clienteDB);
+            _bancoContext.SaveChanges();
+            return true;
+        }
+
     }
 }

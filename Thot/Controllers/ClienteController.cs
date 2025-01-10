@@ -34,14 +34,10 @@ namespace Thot.Controllers
             return View(cliente);
         }
 
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
-            return View();
-        }
-
-        public IActionResult ApagarConfirmacao()
-        {
-            return View();
+            _clienteRepositorio.Apagar(id);
+            return RedirectToAction("ListaClientes");
         }
 
         [HttpPost]
@@ -53,7 +49,7 @@ namespace Thot.Controllers
                 return RedirectToAction("ListaClientes");
             }
             
-            return View(cliente);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
