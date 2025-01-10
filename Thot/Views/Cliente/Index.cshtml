@@ -19,6 +19,7 @@
                 <div class="col-sm-8">
                     <label for="Nome">Nome </label>
                     <input type="text" asp-for="Nome" class="form-control">
+                    @Html.ValidationMessageFor(x => x.Nome)
                 </div>
                 <div class="col-sm-4">
                     <label for="Cpf_Cnpj">CPF/CNPJ</label>

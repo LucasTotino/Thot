@@ -12,7 +12,7 @@ namespace Thot.Controllers
             _clienteRepositorio = clienteRepositorio;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(ClienteModel cliente)
         {
             return View();
         }
@@ -53,7 +53,7 @@ namespace Thot.Controllers
                 return RedirectToAction("ListaClientes");
             }
             
-            return View(cliente);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
