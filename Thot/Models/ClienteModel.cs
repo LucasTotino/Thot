@@ -8,6 +8,7 @@ namespace Thot.Models
         [Required(ErrorMessage = "Digite o Nome do Cliente")]
         public string Nome { get; set; }
         [EmailAddress(ErrorMessage = "O Email informado é invalido")]
+        [Required(ErrorMessage = "Digite o Email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Digite o Telefone para contato")]
         [Phone(ErrorMessage = "O Telefone informado é invalido")]

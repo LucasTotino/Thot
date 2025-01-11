@@ -12,11 +12,6 @@ namespace Thot.Controllers
             _clienteRepositorio = clienteRepositorio;
         }
 
-        public IActionResult Index(ClienteModel cliente)
-        {
-            return View();
-        }
-
         public IActionResult ListaClientes()
         {
             List<ClienteModel> clientes = _clienteRepositorio.BuscarTodos();
@@ -36,27 +31,71 @@ namespace Thot.Controllers
 
         public IActionResult Apagar(int id)
         {
-            _clienteRepositorio.Apagar(id);
-            return RedirectToAction("ListaClientes");
+            try
+            {
+                bool apagado = _clienteRepositorio.Apagar(id);
+
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Cliente apagado com sucesso";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao apagar o cliente";
+                }
+                return RedirectToAction("ListaClientes");
+            }
+            catch (System.Exception erro) {
+                TempData["MensagemErro"] = $"Erro ao apagar o cliente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("ListaClientes");
+            }
+            
         }
 
         [HttpPost]
         public IActionResult Criar(ClienteModel cliente)
         {
+            try { 
             if (ModelState.IsValid) 
             {
                 _clienteRepositorio.Adicionar(cliente);
+                TempData["MensagemSucesso"] = "Cliente cadastrado com suceso";
                 return RedirectToAction("ListaClientes");
             }
             
-            return RedirectToAction("Index");
+            return View(cliente);
+
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Erro ao cadastrar o cliente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("ListaClientes");
+            }
         }
 
         [HttpPost]
         public IActionResult Alterar(ClienteModel cliente)
         {
-            _clienteRepositorio.Atualizar(cliente);
-            return RedirectToAction("ListaClientes");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _clienteRepositorio.Atualizar(cliente);
+                    TempData["MensagemSucesso"] = "Cliente alterado com suceso";
+                    return RedirectToAction("ListaClientes");
+                }
+
+                return View("Editar", cliente);
+
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Erro ao alterar o cliente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("ListaClientes");
+            }
+
+            
         }
+        
     }
 }

@@ -20,10 +20,12 @@
                 <div class="col-sm-8">
                     <label for="Nome">Nome </label>
                     <input type="text" asp-for="Nome" class="form-control">
+                    @Html.ValidationMessageFor(x => x.Nome)
                 </div>
                 <div class="col-sm-4">
                     <label for="Cpf_Cnpj">CPF/CNPJ</label>
                     <input type="text" asp-for="Cpf_Cnpj" class="form-control" maxlength="18">
+                    @Html.ValidationMessageFor(x => x.Cpf_Cnpj)
                 </div>
             </div>
 
@@ -41,10 +43,12 @@
                 <div class="col-sm-6">
                     <label for="Email">Email</label>
                     <input type="email" class="form-control" asp-for="Email">
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
                 <div class="col-sm-3">
                     <label for="Celular">Celular</label>
                     <input type="text" class="form-control" asp-for="Celular" maxlength="15">
+                    @Html.ValidationMessageFor(x => x.Celular)
                 </div>
             </div>
 

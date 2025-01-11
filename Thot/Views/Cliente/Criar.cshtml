@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.css" crossorigin="anonymous">
 
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo</h1>
-    <p>Página de Cadastro de Clientes - Projeto Thot.</p>
+    <h1 class="display-4">Cadastro de Clientes</h1>
+    <p>Projeto Thot</p>
 </div>
 
 <div class="container">
@@ -24,6 +24,7 @@
                 <div class="col-sm-4">
                     <label for="Cpf_Cnpj">CPF/CNPJ</label>
                     <input type="text" asp-for="Cpf_Cnpj" class="form-control" maxlength="18">
+                    @Html.ValidationMessageFor(x => x.Cpf_Cnpj)
                 </div>
             </div>
 
@@ -41,10 +42,12 @@
                 <div class="col-sm-6">
                     <label for="Email">Email</label>
                     <input type="email" class="form-control" asp-for="Email">
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
                 <div class="col-sm-3">
                     <label for="Celular">Celular</label>
                     <input type="text" class="form-control" asp-for="Celular" maxlength="15">
+                    @Html.ValidationMessageFor(x => x.Celular)
                 </div>
             </div>
 
