@@ -10,7 +10,7 @@
     @if (TempData["MensagemSucesso"] != null)
     {
         <div class="alert alert-success" role="alert">
-            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            <button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
             @TempData["MensagemSucesso"]
         </div>
     }
@@ -18,7 +18,7 @@
     @if (TempData["MensagemErro"] != null)
     {
         <div class="alert alert-danger" role="alert">
-            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            <button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
             @TempData["MensagemErro"]
     </div>
     }
@@ -26,7 +26,7 @@
     <h1 class="display-4">Lista de Clientes</h1>
     <p>Projeto Thot</p>
 
-    <table class="table">
+    <table id="lista" class="table" style="height: 100%;">
         <thead>
             <tr>
                 <th scope="col">#</th>

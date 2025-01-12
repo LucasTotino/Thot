@@ -49,7 +49,6 @@ namespace Thot.Controllers
                 TempData["MensagemErro"] = $"Erro ao apagar o cliente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("ListaClientes");
             }
-            
         }
 
         [HttpPost]
