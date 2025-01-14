@@ -12,10 +12,12 @@ namespace Thot.Models
         [EmailAddress(ErrorMessage = "O Email informado é invalido")]
         [Required(ErrorMessage = "Digite o Email")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Digite o CPF do Usuário")]
+        [Required(ErrorMessage = "Digite o Login do Usuário")]
         public string Login { get; set; }
+        [Required(ErrorMessage = "Digite o CPF do Usuário")]
         public string Cpf { get; set; }
         public PerfilEnum Perfil { get; set; }
+        [Required(ErrorMessage = "Digite a Senha")]
         public string Senha { get; set; }
         public DateTime Data_Cadastro { get; set; }
         public DateTime? Data_Atualizacao {  get; set; }

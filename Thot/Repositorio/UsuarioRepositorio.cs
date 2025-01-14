@@ -36,11 +36,11 @@ namespace Thot.Repositorio
 
             if (usuarioDB == null) throw new System.Exception("Houve um erro na Atualização do Usuário");
 
+            usuarioDB.Login = usuario.Login;
             usuarioDB.Nome = usuario.Nome;
             usuarioDB.Email = usuario.Email;
             usuarioDB.Cpf = usuario.Cpf;
             usuarioDB.Perfil = usuario.Perfil;
-            usuarioDB.Data_Cadastro = usuario.Data_Cadastro;
             usuarioDB.Data_Atualizacao = DateTime.Now;
             usuarioDB.Senha = usuario.Senha;
 
