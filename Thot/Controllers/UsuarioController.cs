@@ -8,5 +8,10 @@ namespace Thot.Controllers
         {
             return View();
         }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
     }
 }

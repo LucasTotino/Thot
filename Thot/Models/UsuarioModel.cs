@@ -13,6 +13,7 @@ namespace Thot.Models
         [Required(ErrorMessage = "Digite o Email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Digite o CPF do Usuário")]
+        public string Login { get; set; }
         public string Cpf { get; set; }
         public PerfilEnum Perfil { get; set; }
         public string Senha { get; set; }

@@ -12,8 +12,8 @@ using Thot.Data;
 namespace Thot.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20250113150449_CriacaoTabelaUsuarios")]
-    partial class CriacaoTabelaUsuarios
+    [Migration("20250113175437_CriacaoTabelas")]
+    partial class CriacaoTabelas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,6 +102,10 @@ namespace Thot.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
