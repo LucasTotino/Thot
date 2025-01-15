@@ -42,7 +42,6 @@ namespace Thot.Repositorio
             usuarioDB.Cpf = usuario.Cpf;
             usuarioDB.Perfil = usuario.Perfil;
             usuarioDB.Data_Atualizacao = DateTime.Now;
-            usuarioDB.Senha = usuario.Senha;
 
             _bancoContext.Usuarios.Update(usuarioDB);
             _bancoContext.SaveChanges();

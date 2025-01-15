@@ -79,13 +79,23 @@ namespace Thot.Controllers
         }
 
         [HttpPost]
-        public IActionResult Alterar(UsuarioModel usuario)
+        public IActionResult Alterar(UsuarioEditarModel usuarioEditar)
         {
             try
             {
+                UsuarioModel usuario = null;
                 if (ModelState.IsValid)
                 {
-                    _usuarioRepositorio.Atualizar(usuario);
+                   usuario = new UsuarioModel()
+                    {
+                        Id = usuarioEditar.Id,
+                        Nome = usuarioEditar.Nome,
+                        Email = usuarioEditar.Email,
+                        Cpf = usuarioEditar.Cpf,
+                        Login = usuarioEditar.Login,
+                        Perfil = usuarioEditar.Perfil,
+                    };
+                    usuario = _usuarioRepositorio.Atualizar(usuario);
                     TempData["MensagemSucesso"] = "Usuario alterado com suceso";
                     return RedirectToAction("ListaUsuarios");
                 }

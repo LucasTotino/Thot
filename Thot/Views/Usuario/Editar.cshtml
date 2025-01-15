@@ -1,54 +1,48 @@
-﻿@model ClienteModel
+﻿@using Thot.Enum
+@model UsuarioModel
 @{
-    ViewData["Title"] = "Edição de Cliente";
+    ViewData["Title"] = "Edição de Usuario";
 }
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.css" crossorigin="anonymous">
 
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo</h1>
-    <p>Página de Cadastro de Clientes - Projeto Thot.</p>
+    <h1 class="display-4">Edição de Usuário</h1>
+    <p>Projeto Thot</p>
 </div>
 
 <div class="container">
-    <form class="mt-3 mb-3 ml-3 mr-3" asp-controller="Cliente" asp-action="Alterar" method="POST">
+    <form class="mt-3 mb-3 ml-3 mr-3" asp-controller="Usuario" asp-action="Alterar" method="POST">
         <!-- Inicio Formulário -->
         <div class="form-group ">
             <input type="hidden" asp-for="Id"/>
-            <!-- Nome, CPF -->
             <div class="form-row justify-content-center mt-2">
                 <div class="col-sm-8">
-                    <label for="Nome">Nome </label>
+                    <label for="Nome">Nome</label>
                     <input type="text" asp-for="Nome" class="form-control">
                     @Html.ValidationMessageFor(x => x.Nome)
                 </div>
                 <div class="col-sm-4">
-                    <label for="Cpf_Cnpj">CPF/CNPJ</label>
-                    <input type="text" asp-for="Cpf_Cnpj" class="form-control" maxlength="18">
-                    @Html.ValidationMessageFor(x => x.Cpf_Cnpj)
+                    <label for="Cpf">CPF</label>
+                    <input type="text" asp-for="Cpf" class="form-control" maxlength="18">
+                    @Html.ValidationMessageFor(x => x.Cpf)
                 </div>
             </div>
 
             <!-- Tipo de Cliente e Dados de Contato -->
             <div class="form-row justify-content-center mt-2">
+                <div class="col-sm-4">
+                    <label for="Login">Login</label>
+                    <input type="text" asp-for="Login" class="form-control">
+                    @Html.ValidationMessageFor(x => x.Login)
+                </div>
                 <div class="form-group col-sm-3">
-                    <label for="TipoCliente" class="text-danger font-weight-bold">Tipo de Cliente:</label>
-                    <select class="form-control" asp-for="TipoCliente">
-                        <option value=""> -- ESCOLHA -- </option>
-                        <option value="Pessoa Fisica">Pessoa Física</option>
-                        <option value="Pessoa Juridica">Pessoa Jurídica</option>
+                    <label for="Perfil" class="text-danger font-weight-bold">Tipo de Usuário:</label>
+                    <select class="form-control" asp-for="Perfil">
+                        <option value="0"> -- ESCOLHA -- </option>
+                        <option value="@PerfilEnum.Admin">Administrador</option>
+                        <option value="@PerfilEnum.Padrao">Padrão</option>
                     </select>
-                </div>
-
-                <div class="col-sm-6">
-                    <label for="Email">Email</label>
-                    <input type="email" class="form-control" asp-for="Email">
-                    @Html.ValidationMessageFor(x => x.Email)
-                </div>
-                <div class="col-sm-3">
-                    <label for="Celular">Celular</label>
-                    <input type="text" class="form-control" asp-for="Celular" maxlength="15">
-                    @Html.ValidationMessageFor(x => x.Celular)
                 </div>
             </div>
 
@@ -57,70 +51,13 @@
             <!-- Endereço -->
 
             <div class="row justify-content-center mt-2">
-                <div class="col-sm-8">
-                    <label for="Logradouro">Logradouro</label>
-                    <input type="text" class="form-control" asp-for="Logradouro">
+                <div class="col-sm-6">
+                    <label for="Email">Email</label>
+                    <input type="email" class="form-control" asp-for="Email">
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
-                <div class="col-sm-2">
-                    <label for="Numero">Número</label>
-                    <input type="text" class="form-control" asp-for="Numero">
-                </div>
-                <div class="col-sm-2">
-                    <label for="Complemento">Complemento</label>
-                    <input type="text" class="form-control" asp-for="Complemento" />
-                </div>
-            </div>
-            <div class="row justify-content-center mt-2">
-                <div class="col-sm-3">
-                    <label for="Bairro">Bairro</label>
-                    <input type="text" class="form-control" asp-for="Bairro" />
-                </div>
-                <div class="form-group col-sm-5">
-                    <label for="Cidade">Cidade:</label>
-                    <input type="text" class="form-control" asp-for="Cidade">
-                </div>
-                <div class="col-sm-2">
-                    <label for="Estado">Estado</label>
-                    <div class="input-group">
-                        <select class="form-control" asp-for="Estado">
-                            <option value=""> -- ESCOLHA -- </option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-sm-2">
-                    <label for="Cep">CEP:</label>
-                    <input type="text" class="form-control" asp-for="Cep" maxlength="9">
-                </div>
-            </div>
 
-            <hr>
+            </div>
 
             <div class="form-row mt-3">
                 <div class="col-md-4 text-left">
@@ -130,9 +67,9 @@
                     <button type="reset" class="btn btn-primary">Limpar</button>
                 </div>
                 <div class="col-md-4 text-right">
-                    <button type="submit" class="btn btn-success">Editar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
-            </div> <!-- BOTÕES -->
+            </div>
         </div>
     </form>
 </div>
