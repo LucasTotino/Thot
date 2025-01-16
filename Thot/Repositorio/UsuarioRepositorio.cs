@@ -6,6 +6,10 @@ namespace Thot.Repositorio
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
         private readonly BancoContext _bancoContext;
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
         public UsuarioRepositorio(BancoContext bancoContext) 
         {
             _bancoContext = bancoContext;
@@ -60,5 +64,6 @@ namespace Thot.Repositorio
             return true;
         }
 
+        
     }
 }

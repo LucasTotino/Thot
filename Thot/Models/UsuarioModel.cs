@@ -21,5 +21,10 @@ namespace Thot.Models
         public string Senha { get; set; }
         public DateTime Data_Cadastro { get; set; }
         public DateTime? Data_Atualizacao {  get; set; }
+        
+        public bool SenhaValida(string senha)
+        {
+            return Senha == senha;
+        }
     }
 }
