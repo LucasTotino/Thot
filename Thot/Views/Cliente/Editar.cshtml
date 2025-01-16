@@ -136,3 +136,29 @@
         </div>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script>
+        $(document).ready(function() {
+        // Aplica a máscara inicial conforme o valor padrão
+        aplicarMascara();
+
+        // Adiciona um listener para mudanças no select TipoCliente
+        $('#TipoCliente').change(function() {
+            aplicarMascara();
+        });
+
+        function aplicarMascara() {
+            var tipoCliente = $('#TipoCliente').val();
+            if (tipoCliente === 'Pessoa Fisica') {
+                $('#Cpf_Cnpj').mask('000.000.000-00');
+            } else if (tipoCliente === 'Pessoa Juridica') {
+                $('#Cpf_Cnpj').mask('00.000.000/0000-00');
+            } else {
+                $('#Cpf_Cnpj').unmask(); // Remove a máscara se nenhuma opção for selecionada
+            }
+        }
+    });
+</script>
