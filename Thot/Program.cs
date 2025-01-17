@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Thot.Data;
+using Thot.Helper;
 using Thot.Repositorio;
 
 namespace Thot
@@ -16,8 +17,18 @@ namespace Thot
         .AddRazorRuntimeCompilation();
             builder.Services.AddControllersWithViews();
             builder.Services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
+
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            builder.Services.AddScoped<ISessao, Sessao>();
+
+            builder.Services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
 
             var app = builder.Build();
 
@@ -35,6 +46,8 @@ namespace Thot
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

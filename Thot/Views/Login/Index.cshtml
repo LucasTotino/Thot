@@ -1,7 +1,7 @@
 ﻿@model LoginModel
 @{
-	Layout = "_LayoutOff";
-	ViewData["Title"] = "Login";
+    Layout = "_LayoutOff";
+    ViewData["Title"] = "Login";
 }
 
 @if (TempData["MensagemErro"] != null)
@@ -11,17 +11,22 @@
         @TempData["MensagemErro"]
     </div>
 }
-
-<form asp_controller="Login" asp-action="Entrar" method="post">
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email ou Login</label>
-        <input type="text" asp-for="Login" class="form-control" id="Login">
-        @Html.ValidationMessageFor(x => x.Login)
+<div class="container">
+    <div class="box mt-3">
+        <div class="container-login" style="padding: 0; margin: 0;">
+            <form asp_controller="Login" asp-action="Entrar" method="post">
+                <div class="m-3">
+                    <label for="exampleInputEmail1" class="form-label">Email ou Login</label>
+                    <input type="text" asp-for="Login" class="form-control" id="Login">
+                    @Html.ValidationMessageFor(x => x.Login)
+                </div>
+                <div class="m-3">
+                    <label for="Senha" class="form-label">Senha</label>
+                    <input type="password" asp-for="Senha" class="form-control" id="Senha">
+                    @Html.ValidationMessageFor(x => x.Senha)
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Entrar</button>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="Senha" class="form-label">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" id="Senha">
-        @Html.ValidationMessageFor(x => x.Senha)
-    </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
-</form>
+</div>

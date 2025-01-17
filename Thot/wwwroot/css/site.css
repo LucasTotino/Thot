@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .field-validation-error {
@@ -22,7 +22,7 @@ body {
 }
 
 .close-alert {
-    position:absolute;
+    position: absolute;
     right: 0px;
     top: 0px;
     border-radius: 15px;
@@ -35,4 +35,16 @@ body {
     bottom: 0;
     width: 100%;
     margin-top: 10px;
+}
+
+.container-login {
+    background-color: ghostwhite;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    margin: 30px;
+    margin-top: 20px;
+    border: solid 1px;
+    border-color: black;
+    border-radius: 12px;
 }
