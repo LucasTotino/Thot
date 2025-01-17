@@ -10,6 +10,10 @@ namespace Thot.Repositorio
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
         }
+        public UsuarioModel BuscarPorEmail(string email)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
+        }
         public UsuarioRepositorio(BancoContext bancoContext) 
         {
             _bancoContext = bancoContext;

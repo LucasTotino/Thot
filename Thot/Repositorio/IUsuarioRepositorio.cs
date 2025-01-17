@@ -4,6 +4,7 @@ namespace Thot.Repositorio
 {
     public interface IUsuarioRepositorio
     {
+        UsuarioModel BuscarPorEmail(string email);
         UsuarioModel BuscarPorLogin(string login);
         UsuarioModel ListarPorId(int id);
         List<UsuarioModel> BuscarTodos();

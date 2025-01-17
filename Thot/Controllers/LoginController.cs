@@ -41,8 +41,18 @@ namespace Thot.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UsuarioModel usuario = _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
-                    if(usuario != null) 
+                    UsuarioModel usuario = null;
+
+                    if (loginModel.Login.Contains("@")) 
+                    {
+                         usuario = _usuarioRepositorio.BuscarPorEmail(loginModel.Login);
+                    }
+                    else 
+                    { 
+                        usuario = _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
+                    }
+
+                    if (usuario != null) 
                     {
                         if(usuario.SenhaValida(loginModel.Senha))
                         {
@@ -52,7 +62,7 @@ namespace Thot.Controllers
                         TempData["MensagemErro"] = $"Senha inválida. Por favor, tente novamente.";
                     }
                     else { 
-                    TempData["MensagemErro"] = $"Usuário e/ou Senha inválido(s). Por favor, tente novamente.";
+                    TempData["MensagemErro"] = $"Login/E-mail errado. Por favor, tente novamente.";
                     }
                 }
                 return View("Index");

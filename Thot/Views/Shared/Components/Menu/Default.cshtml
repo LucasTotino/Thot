@@ -17,7 +17,9 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="Criar">Clientes</a></li>
+                @if(Model.Perfil == Thot.Enum.PerfilEnum.Admin){
                 <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Criar">Usuários</a></li>
+                }
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -26,7 +28,9 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="ListaClientes">Clientes</a></li>
+                @if(Model.Perfil == Thot.Enum.PerfilEnum.Admin){
                 <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="ListaUsuarios">Usuários</a></li>
+                }
             </ul>
         </li>
         <li class="nav-item">
