@@ -32,6 +32,7 @@ namespace Thot.Repositorio
         {
             // Inserção no Banco de Dados
             usuario.Data_Cadastro = DateTime.Now;
+            usuario.SenhaHash();
             _bancoContext.Usuarios.Add(usuario);
             _bancoContext.SaveChanges();
 

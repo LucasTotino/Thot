@@ -27,6 +27,10 @@ namespace Thot.Controllers
 
             return View();
         }
+        public IActionResult RecuperarSenha()
+        {
+            return View();
+        }
 
         public IActionResult Sair()
         {
@@ -73,5 +77,39 @@ namespace Thot.Controllers
                 return RedirectToAction("ListaClientes");
             }
         }
+
+        [HttpPost]
+        public IActionResult LinkRecuperar(RecuperarSenhaModel recuperarSenha)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UsuarioModel usuario = null;
+                    usuario = _usuarioRepositorio.BuscarPorLogin(recuperarSenha.Login);
+                   
+                    if (usuario != null)
+                    {
+                        if (usuario.SenhaValida(recuperarSenha.Email))
+                        {
+                            TempData["MensagemSucesso"] = $"Senha redefinida com sucesso.";
+                            return RedirectToAction("Index", "Login");
+                        }
+                        TempData["MensagemErro"] = $"Não foi possível redefinir a senha, E-mail inválido.";
+                    }
+                    else
+                    {
+                        TempData["MensagemErro"] = $"Não foi possível redefinir a senha, Login errado";
+                    }
+                }
+                return View("Index");
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Não foi possível redefinir sua Senha, detalhe do erro: {erro.Message}";
+                return RedirectToAction("ListaClientes");
+            }
+        }
+        
     }
 }

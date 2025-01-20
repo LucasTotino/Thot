@@ -1,7 +1,7 @@
-﻿@model LoginModel
+﻿@model RecuperarSenhaModel
 @{
     Layout = "_LayoutOff";
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Recuperar Senha";
 }
 
 @if (TempData["MensagemErro"] != null)
@@ -14,25 +14,19 @@
 <div class="container">
     <div class="box mt-3">
         <div class="container-login" style="padding: 0; margin: 0;">
-            <form asp_controller="Login" asp-action="Entrar" method="post">
+            <form asp_controller="Login" asp-action="LinkRecuperar" method="post">
                 <div class="m-3">
                     <label for="Login" class="form-label">Email ou Login</label>
                     <input type="text" asp-for="Login" class="form-control" id="Login">
                     @Html.ValidationMessageFor(x => x.Login)
                 </div>
                 <div class="m-3">
-                    <label for="Senha" class="form-label">Senha</label>
-                    <input type="password" asp-for="Senha" class="form-control" id="Senha">
-                    @Html.ValidationMessageFor(x => x.Senha)
+                    <label for="Email" class="form-label">Digite o E=mail</label>
+                    <input type="text" asp-for="Email" class="form-control" id="Email">
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
-                <div class="mb-1"><a asp-controller="Login" asp-action="RecuperarSenha">Esqueci a senha</a></div>
                 <button type="submit" class="btn btn-primary mb-3">Entrar</button>
             </form>
         </div>
     </div>
 </div>
-
-<!--
-Senha 1234    
-7110eda4d09e062aa5e4a390b0a572ac0d2c0220 
--->

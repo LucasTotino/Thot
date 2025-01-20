@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Thot.Enum;
+using Thot.Helper;
 
 namespace Thot.Models
 {
@@ -20,11 +21,15 @@ namespace Thot.Models
         [Required(ErrorMessage = "Digite a Senha")]
         public string Senha { get; set; }
         public DateTime Data_Cadastro { get; set; }
-        public DateTime? Data_Atualizacao {  get; set; }
-        
+        public DateTime? Data_Atualizacao { get; set; }
         public bool SenhaValida(string senha)
         {
             return Senha == senha;
+        }
+
+        public void SenhaHash()
+        {
+            Senha = Senha.Criptografar();
         }
     }
 }
