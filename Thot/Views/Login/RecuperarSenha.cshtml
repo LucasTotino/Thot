@@ -1,0 +1,40 @@
+﻿@model RecuperarSenhaModel
+@{
+	Layout = "_LayoutOff";
+	ViewData["Title"] = "Recuperar Senha";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+	<div class="alert alert-danger" role="alert">
+		<button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
+		@TempData["MensagemErro"]
+	</div>
+}
+<div class="container">
+	<div class="box mt-3">
+		<div class="container-login" style="padding: 0; margin: 0;">
+			<form asp_controller="Login" asp-action="LinkRecuperar" method="post">
+				<div class="m-3">
+					<label for="Login" class="form-label">Login</label>
+					<input type="text" asp-for="Login" class="form-control" id="Login">
+					@Html.ValidationMessageFor(x => x.Login)
+				</div>
+				<div class="m-3">
+					<label for="Email" class="form-label">E-mail</label>
+					<input type="text" asp-for="Email" class="form-control" id="Email">
+					@Html.ValidationMessageFor(x => x.Email)
+				</div>
+				<div class="form-row d-flex justify-content-center">
+					<div class="m-3">
+						<a class="btn btn-warning" asp-controller="Home" asp-action="Index">Voltar</a>
+					</div>
+					<div class="m-3">
+						<button type="submit" class="btn btn-primary mb-3">Recuperar</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

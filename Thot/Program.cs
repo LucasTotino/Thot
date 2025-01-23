@@ -23,6 +23,7 @@ namespace Thot
             builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             builder.Services.AddScoped<ISessao, Sessao>();
+            builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddSession(o =>
             {

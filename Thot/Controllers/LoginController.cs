@@ -9,12 +9,15 @@ namespace Thot.Controllers
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly ISessao _sessao;
+        private readonly IEmail _email;
 
         public LoginController(IUsuarioRepositorio usuarioRepositorio,
-            ISessao sessao)
+            ISessao sessao,
+            IEmail email)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _sessao = sessao;
+            _email = email;
         }
 
         public IActionResult Index()
@@ -25,6 +28,10 @@ namespace Thot.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            return View();
+        }
+        public IActionResult RecuperarSenha()
+        {
             return View();
         }
 
@@ -43,26 +50,27 @@ namespace Thot.Controllers
                 {
                     UsuarioModel usuario = null;
 
-                    if (loginModel.Login.Contains("@")) 
+                    if (loginModel.Login.Contains("@"))
                     {
-                         usuario = _usuarioRepositorio.BuscarPorEmail(loginModel.Login);
+                        usuario = _usuarioRepositorio.BuscarPorEmail(loginModel.Login);
                     }
-                    else 
-                    { 
+                    else
+                    {
                         usuario = _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
                     }
 
-                    if (usuario != null) 
+                    if (usuario != null)
                     {
-                        if(usuario.SenhaValida(loginModel.Senha))
+                        if (usuario.SenhaValida(loginModel.Senha))
                         {
                             _sessao.CriarSessaoUsuario(usuario);
-                            return RedirectToAction("Index", "Home"); 
+                            return RedirectToAction("Index", "Home");
                         }
                         TempData["MensagemErro"] = $"Senha inválida. Por favor, tente novamente.";
                     }
-                    else { 
-                    TempData["MensagemErro"] = $"Login/E-mail errado. Por favor, tente novamente.";
+                    else
+                    {
+                        TempData["MensagemErro"] = $"Login/E-mail errado. Por favor, tente novamente.";
                     }
                 }
                 return View("Index");
@@ -73,5 +81,46 @@ namespace Thot.Controllers
                 return RedirectToAction("ListaClientes");
             }
         }
+
+        [HttpPost]
+        public IActionResult LinkRecuperar(RecuperarSenhaModel recuperarSenha)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UsuarioModel usuario = _usuarioRepositorio.BuscarPorEmailELogin(recuperarSenha.Email, recuperarSenha.Login);
+
+                    if (usuario != null)
+                    {
+                        string novaSenha = usuario.NovaSenha();
+                        string mensagem = $"Sua nova senha é: {novaSenha}";
+
+                        bool emailEnviado = _email.Enviar(usuario.Email, "Sistema de Contatos - Nova Senha", mensagem);
+
+                        if (emailEnviado)
+                        {
+                            _usuarioRepositorio.Atualizar(usuario);
+                            TempData["MensagemSucesso"] = $"Enviamos para seu e-mail cadastrado uma nova senha.";
+                        }
+                        else
+                        {
+                            TempData["MensagemErro"] = $"Não conseguimos enviar e-mail. Por favor, tente novamente.";
+                        }
+
+                        return RedirectToAction("Index", "Login");
+                    }
+
+                    TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha. Por favor, verifique os dados informados.";
+                }
+                return View("Index");
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Não foi possível redefinir sua Senha, detalhe do erro: {erro.Message}";
+                return RedirectToAction("ListaClientes");
+            }
+        }
+
     }
 }

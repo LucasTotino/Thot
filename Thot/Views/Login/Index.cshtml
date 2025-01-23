@@ -4,6 +4,14 @@
     ViewData["Title"] = "Login";
 }
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
 @if (TempData["MensagemErro"] != null)
 {
     <div class="alert alert-danger" role="alert">
@@ -11,12 +19,13 @@
         @TempData["MensagemErro"]
     </div>
 }
+
 <div class="container">
     <div class="box mt-3">
         <div class="container-login" style="padding: 0; margin: 0;">
             <form asp_controller="Login" asp-action="Entrar" method="post">
                 <div class="m-3">
-                    <label for="exampleInputEmail1" class="form-label">Email ou Login</label>
+                    <label for="Login" class="form-label">Email ou Login</label>
                     <input type="text" asp-for="Login" class="form-control" id="Login">
                     @Html.ValidationMessageFor(x => x.Login)
                 </div>
@@ -25,8 +34,14 @@
                     <input type="password" asp-for="Senha" class="form-control" id="Senha">
                     @Html.ValidationMessageFor(x => x.Senha)
                 </div>
+                <div class="mb-1"><a asp-controller="Login" asp-action="RecuperarSenha">Esqueci a senha</a></div>
                 <button type="submit" class="btn btn-primary mb-3">Entrar</button>
             </form>
         </div>
     </div>
 </div>
+
+<!--
+Senha 1234    
+7110eda4d09e062aa5e4a390b0a572ac0d2c0220 
+-->

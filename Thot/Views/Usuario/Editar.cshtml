@@ -56,17 +56,16 @@
                     <input type="email" class="form-control" asp-for="Email">
                     @Html.ValidationMessageFor(x => x.Email)
                 </div>
-
             </div>
 
-            <div class="form-row mt-3">
-                <div class="col-md-4 text-left">
+            <hr>
+
+            <!-- Botões -->
+            <div class="form-row mt-3 d-flex justify-content-between">
+                <div>
                     <a class="btn btn-warning" asp-controller="Home" asp-action="Index">Voltar</a>
                 </div>
-                <div class="col-md-4 text-center">
-                    <button type="reset" class="btn btn-primary">Limpar</button>
-                </div>
-                <div class="col-md-4 text-right">
+                <div>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </div>
