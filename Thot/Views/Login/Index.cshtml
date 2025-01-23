@@ -4,6 +4,14 @@
     ViewData["Title"] = "Login";
 }
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
 @if (TempData["MensagemErro"] != null)
 {
     <div class="alert alert-danger" role="alert">
@@ -11,6 +19,7 @@
         @TempData["MensagemErro"]
     </div>
 }
+
 <div class="container">
     <div class="box mt-3">
         <div class="container-login" style="padding: 0; margin: 0;">

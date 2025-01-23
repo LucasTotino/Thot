@@ -1,4 +1,5 @@
-﻿using Thot.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Thot.Data;
 using Thot.Models;
 
 namespace Thot.Repositorio
@@ -13,6 +14,10 @@ namespace Thot.Repositorio
         public UsuarioModel BuscarPorEmail(string email)
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
+        }
+        public UsuarioModel BuscarPorEmailELogin(string email, string login)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
         }
         public UsuarioRepositorio(BancoContext bancoContext) 
         {

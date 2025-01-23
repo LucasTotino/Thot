@@ -24,12 +24,17 @@ namespace Thot.Models
         public DateTime? Data_Atualizacao { get; set; }
         public bool SenhaValida(string senha)
         {
-            return Senha == senha;
+            return Senha == senha.Criptografar();
         }
-
         public void SenhaHash()
         {
             Senha = Senha.Criptografar();
+        }
+        public string NovaSenha()
+        {
+            string novaSenha = Guid.NewGuid().ToString().Substring(0,8);
+            Senha = novaSenha.Criptografar();
+            return novaSenha;
         }
     }
 }

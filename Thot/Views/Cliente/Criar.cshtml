@@ -121,29 +121,31 @@
 
             <hr>
 
-            <div class="form-row mt-3">
-                <div class="col-md-4 text-left">
+			<!-- Botões -->
+            <div class="form-row mt-3 d-flex justify-content-between">
+                <div>
                     <a class="btn btn-warning" asp-controller="Home" asp-action="Index">Voltar</a>
                 </div>
-                <div class="col-md-4 text-center">
+                <div>
                     <button type="reset" class="btn btn-primary">Limpar</button>
                 </div>
-                <div class="col-md-4 text-right">
-                    <button type="submit" class="btn btn-success">Adicionar</button>
+                <div>
+                    <button type="submit" class="btn btn-success" id="btn-adicionar">Adicionar</button>
                 </div>
-            </div> <!-- BOTÕES -->
+            </div> 
         </div>
     </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 <script>
         $(document).ready(function() {
         // Aplica a máscara inicial conforme o valor padrão
         aplicarMascara();
+
+        $('#Celular').mask('(00) 00000-0000');
 
         // Adiciona um listener para mudanças no select TipoCliente
         $('#TipoCliente').change(function() {

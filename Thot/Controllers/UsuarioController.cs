@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Thot.Filters;
+using Thot.Helper;
 using Thot.Models;
 using Thot.Repositorio;
 
@@ -9,7 +10,7 @@ namespace Thot.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio) 
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
         }
@@ -54,15 +55,30 @@ namespace Thot.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar(UsuarioModel usuario)
+        public IActionResult Criar(UsuarioModel usuario, string ConfirmaEmail, string ConfirmaSenha)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _usuarioRepositorio.Adicionar(usuario);
-                    TempData["MensagemSucesso"] = "Usuario cadastrado com suceso";
-                    return RedirectToAction("ListaUsuarios");
+                    if (usuario.Email == ConfirmaEmail)
+                    {
+                        if (usuario.Senha == ConfirmaSenha)
+                        {
+                            _usuarioRepositorio.Adicionar(usuario);
+                            TempData["MensagemSucesso"] = "Usuario cadastrado com suceso";
+                            return RedirectToAction("ListaUsuarios");
+                        }
+                        else
+                        {
+                            TempData["MensagemErro"] = $"Senhas Divergentes";
+                        }
+                    }
+                    else
+                    {
+                        TempData["MensagemErro"] = $"E-mails Divergentes";
+                    }
+
                 }
 
                 foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
@@ -88,7 +104,7 @@ namespace Thot.Controllers
                 UsuarioModel usuario = null;
                 if (ModelState.IsValid)
                 {
-                   usuario = new UsuarioModel()
+                    usuario = new UsuarioModel()
                     {
                         Id = usuarioEditar.Id,
                         Nome = usuarioEditar.Nome,
