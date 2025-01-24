@@ -1,0 +1,67 @@
+﻿@model List<FornecedorModel>
+@{
+	ViewData["Title"] = "Lista de Fornecedores";
+}
+<style>
+
+</style>
+<div class="text-center">
+
+	<br />
+
+	@if (TempData["MensagemSucesso"] != null)
+	{
+		<div class="alert alert-success" role="alert">
+			<button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
+			@TempData["MensagemSucesso"]
+		</div>
+	}
+
+	@if (TempData["MensagemErro"] != null)
+	{
+		<div class="alert alert-danger" role="alert">
+			<button type="button" class="btn btn-sm close-alert" arial-label="Close">X</button>
+			@TempData["MensagemErro"]
+		</div>
+	}
+
+	<h1 class="display-4">Lista de Fornecedores</h1>
+	<p>Projeto Thot</p>
+
+	<table id="lista" class="table" style="height: 100%;">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Nome</th>
+				<th scope="col">Tipo</th>
+				<th scope="col">Contato</th>
+				<th scope="col">Email</th>
+				<th scope="col">Data Criação</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model != null && Model.Any())
+			{
+				foreach (FornecedorModel fornecedor in Model)
+				{
+					<tr>
+						<th scope="row">@fornecedor.Id</th>
+						<td>@fornecedor.Nome</td>
+						<td>@(fornecedor.TipoFornecedor == Thot.Enum.TipoPessoa.Fisica ? "Pessoa Física" : "Pessoa Jurídica")</td>
+						<td>@fornecedor.Contato</td>
+						<td>@fornecedor.Email</td>
+						<td>@fornecedor.DataCadastro</td>
+						<td>
+							<div class="btn-group" role="group">
+								<a role="button" class="btn btn-primary" asp-route-id="@fornecedor.Id" asp-controller="Fornecedor" asp-action="Editar">Editar</a>
+								<a role="button" class="btn btn-danger" onclick="return confirm('Você realmente deseja excluir o Usuário: @fornecedor.Nome?');"
+								   asp-route-id="@fornecedor.Id" asp-controller="Fornecedor" asp-action="Apagar">Excluir</a>
+							</div>
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>
