@@ -23,7 +23,7 @@ namespace Thot.Repositorio
         public FornecedorModel Adicionar(FornecedorModel fornecedor)
         {
             // Inserção no Banco de Dados
-            _bancoContext.Clientes.Add(fornecedor);
+            _bancoContext.Fornecedores.Add(fornecedor);
             _bancoContext.SaveChanges();
 
             return fornecedor;
