@@ -17,8 +17,11 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="Criar">Clientes</a></li>
-                @if(Model.Perfil == Thot.Enum.PerfilEnum.Admin){
-                <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Criar">Usuários</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Fornecedor" asp-action="Criar">Fornecedores</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Produto" asp-action="Criar">Produtos</a></li>
+                @if (Model.Perfil == Thot.Enum.PerfilEnum.Admin)
+                {
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="Criar">Usuários</a></li>
                 }
             </ul>
         </li>
@@ -28,8 +31,45 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="ListaClientes">Clientes</a></li>
-                @if(Model.Perfil == Thot.Enum.PerfilEnum.Admin){
-                <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="ListaUsuarios">Usuários</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Fornecedor" asp-action="ListaFornecedores">Fornecedores</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Produto" asp-action="ListaProdutos">Produtos</a></li>
+                @if (Model.Perfil == Thot.Enum.PerfilEnum.Admin)
+                {
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="ListaUsuarios">Usuários</a></li>
+                }
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Compras
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="Cotacao">Cotação de Compras</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="NotaEntrada">NFE</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="Solicitacao">Solicitação de Compra</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Comercial
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-area="" asp-controller="Comercial" asp-action="NotaSaida">NFS</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Comercial" asp-action="Promocoes">Promoções de Venda</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Comercial" asp-action="Venda">Vendas</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Relatórios
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="RelatorioClientes">Clientes</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Fornecedor" asp-action="RelatorioFornecedores">Fornecedores</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Produto" asp-action="RelatorioProdutos">Produtos</a></li>
+                @if (Model.Perfil == Thot.Enum.PerfilEnum.Admin)
+                {
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Usuario" asp-action="RelatorioUsuarios">Usuários</a></li>
                 }
             </ul>
         </li>
@@ -37,11 +77,11 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
         </li>
         <li>
-            
+
         </li>
     </ul>
-    	<span class ="navbar-text">
+    <span class="navbar-text">
         @Model.Nome
-    </span >
-	<a class="nav-link text-dark flex" asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
+    </span>
+    <a class="nav-link text-dark flex" asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
 </div>

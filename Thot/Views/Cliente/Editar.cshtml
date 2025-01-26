@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.css" crossorigin="anonymous">
 
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo</h1>
-    <p>Página de Cadastro de Clientes - Projeto Thot.</p>
+    <h1 class="display-4">Edição de Cliente</h1>
+    <p>Projeto Thot</p>
 </div>
 
 <div class="container">
@@ -125,7 +125,7 @@
 			<!-- Botões -->
             <div class="form-row mt-3 d-flex justify-content-between">
                 <div>
-                    <a class="btn btn-warning" asp-controller="Home" asp-action="Index">Voltar</a>
+                    <a class="btn btn-warning" asp-controller="Cliente" asp-action="ListaClientes">Voltar</a>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success">Salvar</button>
@@ -144,6 +144,7 @@
         aplicarMascara();
 
         $('#Celular').mask('(00) 00000-0000)');
+        $('#Cep').mask('00000-000')
         // Adiciona um listener para mudanças no select TipoCliente
         $('#TipoCliente').change(function() {
             aplicarMascara();

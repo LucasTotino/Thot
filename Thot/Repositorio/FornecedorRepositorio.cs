@@ -23,6 +23,7 @@ namespace Thot.Repositorio
         public FornecedorModel Adicionar(FornecedorModel fornecedor)
         {
             // Inserção no Banco de Dados
+            fornecedor.DataCadastro = DateTime.Now;
             _bancoContext.Fornecedores.Add(fornecedor);
             _bancoContext.SaveChanges();
 
@@ -33,9 +34,10 @@ namespace Thot.Repositorio
         {
             FornecedorModel fornecedorDB = ListarPorId(fornecedor.Id);
 
-            if (fornecedorDB == null) throw new System.Exception("Houve um erro na Atualização do Cliente");
+            if (fornecedorDB == null) throw new System.Exception("Houve um erro na Atualização do Fornecedor");
 
             fornecedorDB.Nome = fornecedor.Nome;
+            fornecedorDB.RazaoSocial = fornecedor.RazaoSocial;
             fornecedorDB.Email = fornecedor.Email;
             fornecedorDB.Contato = fornecedor.Contato;
             fornecedorDB.Cpf_Cnpj = fornecedor.Cpf_Cnpj;
