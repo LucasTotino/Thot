@@ -11,6 +11,8 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
         </li>
+
+        <!-- Menu de Cadastros -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cadastros
@@ -25,6 +27,8 @@
                 }
             </ul>
         </li>
+
+        <!-- Menu de Consultas -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Consultas
@@ -39,26 +43,49 @@
                 }
             </ul>
         </li>
+
+        <!-- Menu de Movimentações -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Compras
+                Movimentações
             </a>
             <ul class="dropdown-menu">
+                <!-- Itens relacionados a aba de Compras -->
+                <li class="dropdown-header"><span>Compras</span></li>
                 <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="Cotacao">Cotação de Compras</a></li>
                 <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="NotaEntrada">NFE</a></li>
+                <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="Pedido">Pedido de Compra</a></li>
                 <li><a class="dropdown-item" asp-area="" asp-controller="Compra" asp-action="Solicitacao">Solicitação de Compra</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Comercial
-            </a>
-            <ul class="dropdown-menu">
+                <li class="dropdown-divider"></li>
+                <!-- Itens relacionados ao Comercial -->
+                <li class="dropdown-header"><span>Comercial</span></li>
                 <li><a class="dropdown-item" asp-area="" asp-controller="Comercial" asp-action="NotaSaida">NFS</a></li>
                 <li><a class="dropdown-item" asp-area="" asp-controller="Comercial" asp-action="Promocoes">Promoções de Venda</a></li>
                 <li><a class="dropdown-item" asp-area="" asp-controller="Comercial" asp-action="Venda">Vendas</a></li>
             </ul>
         </li>
+
+        <!-- Menu de Estoque -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Estoque
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-area="" asp-controller="Estoque" asp-action="Index">Controle de Estoque</a></li>
+            </ul>
+        </li>
+
+        <!-- Menu de Financeiro -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Financeiro
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" asp-area="" asp-controller="Financeiro" asp-action="Aprovacao">Aprovação de Compra</a></li>
+            </ul>
+        </li>
+
+        <!-- Menu de Relatórios -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Relatórios
@@ -73,13 +100,14 @@
                 }
             </ul>
         </li>
+
+        <!-- Menu de Privacidade -->
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
         </li>
-        <li>
-
-        </li>
+        
     </ul>
+    <!-- Exibição do Usuário e Botão de Logoff -->
     <span class="navbar-text">
         @Model.Nome
     </span>

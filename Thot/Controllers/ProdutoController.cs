@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Thot.Filters;
 using Thot.Models;
 using Thot.Repositorio;
 
 namespace Thot.Controllers
 {
+    [UsuarioLogado]
     public class ProdutoController : Controller
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
